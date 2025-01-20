@@ -59,8 +59,9 @@ public class RegistrazioneController {
       Cliente c = new Cliente(email, encryptedPassword, nome, cognome, 0, 0, null, null);
       clienteDao.save(c);
     }
-    return "redirect:" + loginController;
 
+    httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+    return "redirect:" + loginController;
   }
 
 }
