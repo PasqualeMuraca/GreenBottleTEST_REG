@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 @RequestMapping("/registrazione")
 public class RegistrazioneController {
@@ -24,10 +23,8 @@ public class RegistrazioneController {
   private static final String registrazioneView = "/AccessoView/Registrazione";
   private static final String loginController = "/login";
 
-
   @Autowired
   private ClienteDao clienteDao;
-
 
   @GetMapping
   public String get(@ModelAttribute RegistrazioneForm registrazioneForm) {
@@ -60,8 +57,6 @@ public class RegistrazioneController {
       clienteDao.save(c);
     }
 
-    httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     return "redirect:" + loginController;
   }
-
 }
