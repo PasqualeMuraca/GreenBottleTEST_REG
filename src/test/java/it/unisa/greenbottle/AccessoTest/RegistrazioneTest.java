@@ -1,6 +1,7 @@
 package it.unisa.greenbottle.AccessoTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import it.unisa.greenbottle.controller.accessoControl.form.RegistrazioneForm;
@@ -53,8 +54,14 @@ public class RegistrazioneTest {
 
   @Test
   public void registrazioneEffettuata() throws Exception {
-    testRegistrazione("Giancarlo", "Toronto", "GiancarloToronto1966@gmail.com", "GiancoToro66!",
-        status().isOk());
+    mockMvc.perform(post("/registrazione")
+            .param("nome", "Giancarlo")
+            .param("cognome", "Toronto")
+            .param("email", "GiancarloToronto1966@gmail.com")
+            .param("password", "GiancoToro66!")
+        )
+        .andExpect(status().is3xxRedirection())
+        .andExpect(header().string("Location", "/login"));
   }
 
   private void testRegistrazione(String nome, String cognome, String email, String password,
