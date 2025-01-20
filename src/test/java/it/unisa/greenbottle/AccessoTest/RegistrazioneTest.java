@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 @SpringBootTest
-
 @AutoConfigureMockMvc
 public class RegistrazioneTest {
 
